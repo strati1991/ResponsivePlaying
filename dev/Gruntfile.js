@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     compass: {                  // Task
       dist: {                   // Target
         options: {              // Target options
-          sassDir: 'sass',
+          sassDir: 'sass/',
           cssDir: '../build/css',
         }
       }
@@ -20,11 +20,13 @@ module.exports = function(grunt) {
     mincss : {
       compress : {
         files : {
-          "../build/css/main.min.css" : ['static/css/main.css'],
-          "../build/css/normalize.min.css" : ['static/css/normalize.css']
+          "../build/css/boilerplate.min.css" : ['static/css/boilerplate.css'],
+          "../build/css/normalize.min.css" : ['static/css/normalize.css'],
+          "../build/css/main.min.css" : ['../build/css/main.css']
           }
         }
     },
+    clean :["../build/css/main.css","../build/css/normalize.css"],
     htmlmin: {                                     // Task
       dist: {                                      // Target
         options: {                                 // Target options
@@ -53,8 +55,12 @@ module.exports = function(grunt) {
         files: ['static/js/*.js'],
         tasks: 'js'
       },
+      sass:{
+        files: ['sass/**/*.scss'],
+        tasks: 'sass'
+      },
       css:{
-        files: ['static/sass/**/*.scss'],
+        files: ['static/css/*.css'],
         tasks: 'sass'
       }
     }
